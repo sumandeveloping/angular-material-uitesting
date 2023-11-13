@@ -1,0 +1,12 @@
+.leftNavigation {
+  //li items in left menu
+  &__list {
+    span {
+      .mdc-list-item__primary-text {
+        display: flex;
+        align-items: center;
+        color: var(--color-primary-text-light) !important;
+      }
+    }
+  }
+}

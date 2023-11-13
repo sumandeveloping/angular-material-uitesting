@@ -1,0 +1,91 @@
+[
+  {
+    "text": "Dashboard",
+    "icon": "dashboard",
+    "routerLink": "/"
+  },
+  {
+    "text": "Customer",
+    "icon": "people",
+    "routerLink": "/reports"
+  },
+  {
+    "text": "Suit",
+    "icon": "inventory_2",
+    "children": [
+      {
+        "text": "Category",
+        "icon": "category",
+        "routerLink": "/reports"
+      },
+      {
+        "text": "Sub Category",
+        "icon": "layers",
+        "routerLink": "/"
+      },
+      {
+        "text": "Product",
+        "icon": "all_inbox",
+        "routerLink": "/"
+      }
+    ]
+  },
+  {
+    "text": "Expense",
+    "icon": "inventory_2",
+    "children": [
+      {
+        "text": "Category",
+        "icon": "category",
+        "routerLink": "/"
+      },
+      {
+        "text": "Manage Expense",
+        "icon": "layers",
+        "routerLink": "/"
+      },
+      {
+        "text": "Statement",
+        "icon": "all_inbox",
+        "routerLink": "/"
+      }
+    ]
+  },
+  {
+    "text": "Purchases",
+    "icon": "receipt",
+    "children": [
+      {
+        "text": "New Purchases",
+        "icon": "local_atm",
+        "routerLink": "/"
+      },
+      {
+        "text": "Purchases History",
+        "icon": "history",
+        "routerLink": "/"
+      }
+    ]
+  },
+  {
+    "text": "Sales",
+    "icon": "calculate",
+    "children": [
+      {
+        "text": "New Sales",
+        "icon": "point_of_sale",
+        "routerLink": "/"
+      },
+      {
+        "text": "Sales History",
+        "icon": "history",
+        "routerLink": "/"
+      }
+    ]
+  },
+  {
+    "text": "Report",
+    "icon": "analytics",
+    "routerLink": "/"
+  }
+]

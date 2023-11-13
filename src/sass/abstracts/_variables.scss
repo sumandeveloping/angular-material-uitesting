@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color-grabber($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // @debug mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, "primary");
+  $accent-palette: map.get($color-config, "accent");
+
+  @debug "this is primary palette ==  `$primary-palette` map";
+  @debug $primary-palette;
+  // Read the 500 hue from the primary color palette.
+  // color: mat.get-color-from-palette($primary-palette, 500);
+  // @debug mat.get-color-from-palette($primary-palette, 500);
+  // @warn "Unfortunately, no value could be retrieved from `#{mat.get-color-from-palette($primary-palette, 500)}`. ";
+  @warn mat.get-color-from-palette($primary-palette, A700);
+  --color-primary-500: #{mat.get-color-from-palette($primary-palette, 500)};
+  --color-primary-400: #{mat.get-color-from-palette($primary-palette, 400)};
+  --color-primary-300: #{mat.get-color-from-palette($primary-palette, 300)};
+  --color-primary-200: #{mat.get-color-from-palette($primary-palette, 200)};
+  --color-accent-500: #{mat.get-color-from-palette($accent-palette, 500)};
+  --color-accent-200: #{mat.get-color-from-palette($accent-palette, 200)};
+
+  // text
+  --color-primary-text-light: #{mat.get-color-from-palette(
+      $primary-palette,
+      default-contrast
+    )};
+  --color-primary-text-dark: #{mat.get-color-from-palette(
+      $primary-palette,
+      lighter-contrast
+    )};
+  --color-primary-text-3: #{mat.get-color-from-palette(
+      $primary-palette,
+      darker-contrast
+    )};
+  // }
+}
+
+// $color: limegreen;
+
+//
+$leftNavigation-width: 300px;
+
+:root {
+  --leftNavigation-width: 220px;
+  --topMenu-height: 6rem;
+}

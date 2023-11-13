@@ -1,0 +1,59 @@
+<nav class="leftNavigation">
+  <div class="leftNavigation__logo">
+    <a role="button" routerLink="/"
+      ><mat-icon color="primary" class="leftNavigation__logo--icon"
+        >manage_accounts</mat-icon
+      >
+      <mat-divider></mat-divider
+    ></a>
+  </div>
+  <mat-nav-list class="leftNavigation__container">
+    <mat-list-item class="leftNavigation__list" routerLink="/reports">
+      <mat-icon>feedback</mat-icon>
+      <span>Service</span>
+    </mat-list-item>
+    <ng-container
+      *ngFor="let menuItem of menuList | async as menuList; index as i"
+    >
+      <ng-container
+        [ngTemplateOutlet]="menuItem?.children ? childItems : parentItems"
+        [ngTemplateOutletContext]="{ menuItem: menuItem }"
+      ></ng-container>
+    </ng-container>
+  </mat-nav-list>
+</nav>
+
+<!-- main menu template -->
+<ng-template #parentItems let-menuItem="menuItem">
+  <mat-list-item
+    class="leftNavigation__list mat-mdc-list-item-interactive"
+    matRipple
+    [routerLink]="menuItem.routerLink"
+  >
+    <mat-icon>{{ menuItem.icon }}</mat-icon>
+    <span>{{ menuItem.text }}</span>
+  </mat-list-item>
+</ng-template>
+<!-- child menu template => material expansion panel -->
+<ng-template #childItems let-menuItem="menuItem">
+  <mat-expansion-panel
+    [class.mat-elevation-z0]="true"
+    hideToggle="false"
+    togglePosition="after"
+  >
+    <mat-expansion-panel-header
+      ><mat-icon>{{ menuItem.icon }}</mat-icon
+      >{{ menuItem.text }}</mat-expansion-panel-header
+    >
+    <mat-nav-list class="leftNavigation__container--submenu">
+      <mat-list-item
+        class="leftNavigation__list"
+        [routerLink]="submenu.routerLink"
+        *ngFor="let submenu of menuItem.children; index as submenuIndex"
+      >
+        <!-- <mat-icon>{{ submenu.icon }}</mat-icon> -->
+        <span>{{ submenu.text }}</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</ng-template>

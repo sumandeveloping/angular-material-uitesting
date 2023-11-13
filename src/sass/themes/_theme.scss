@@ -1,0 +1,85 @@
+/* For use in src/lib/core/theming/_palette.scss */
+$my-dark-palette: (
+  50: #e9e8e8,
+  100: #c8c7c7,
+  200: #a3a1a1,
+  300: #7e7b7b,
+  400: #625f5f,
+  500: #464343,
+  600: #3f3d3d,
+  700: #373434,
+  800: #2f2c2c,
+  900: #201e1e,
+  A100: #c8c7c7,
+  A200: #a3a1a1,
+  A400: #625f5f,
+  A700: #373434,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+@use "@angular/material" as mat;
+@use "../abstracts/variables" as variables;
+@include mat.core();
+//light mode
+$primary-light-palette: mat.define-palette(mat.$deep-purple-palette);
+$accent-light-palette: mat.define-palette(mat.$amber-palette);
+//dark mode
+$primary-dark-palette: mat.define-palette($my-dark-palette);
+$accent-dark-palette: mat.define-palette(mat.$blue-grey-palette);
+
+// Emit theme-dependent styles for common features used across multiple components.
+// @include mat.core-theme($my-theme);
+
+// Emit styles for MatButton based on `$my-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+// @include mat.button-theme($my-theme);
+
+// typography: mat.define-typography-config(),
+// density: 0,
+
+$my-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary-light-palette,
+      accent: $accent-light-palette,
+    ),
+  )
+);
+//applying theme to all components
+@include mat.all-component-themes($my-light-theme);
+
+//light mode theme for app
+.light-mode-theme {
+  @include variables.color-grabber($my-light-theme);
+}
+
+//dark mode theme for app
+.dark-mode-theme {
+  $my-dark-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $primary-dark-palette,
+        accent: $accent-dark-palette,
+      ),
+    )
+  );
+  // @include mat.all-component-themes($my-dark-theme);
+  @include mat.all-component-colors($my-dark-theme);
+  @include variables.color-grabber($my-dark-theme);
+}

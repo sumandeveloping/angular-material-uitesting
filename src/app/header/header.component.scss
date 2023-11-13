@@ -1,0 +1,12 @@
+mat-toolbar {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: var(--topMenu-height);
+  display: flex;
+  align-items: center;
+  //   background-color: var(--color-primary-500);
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}

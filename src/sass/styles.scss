@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+//themes
+@import "./themes/theme";
+//abstract
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+@import "./abstracts/functions";
+//base
+@import "./base/base";
+@import "./base/typography";
+//components
+@import "./components/dashboard.comp";
+//layout
+//theme
+//vendors
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html {
+  font-size: 62.5%;
+}
+// .mdc-list-item__primary-text {
+//   display: flex;
+//   align-items: center;
+//   color: var(--color-primary-text-light) !important;
+// }
