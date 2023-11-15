@@ -1,10 +1,6 @@
 @import "abstracts/variables";
 .leftNavigation {
-  // height: 100%;
-  // width: 100%;
-  //added new
-
-  //====
+  height: 100%;
 
   //logo
   &__logo {
@@ -49,12 +45,6 @@
   &__list {
     height: 4rem;
     background-color: var(--color-primary-500);
-
-    // span span {
-    //   display: flex;
-    //   align-items: center;
-    //   color: var(--color-primary-text-light);
-    // }
   }
 }
 

@@ -1,15 +1,22 @@
-// *,
-// *::after,
-// *::before {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
-// html,
-// body {
-//   height: 100%;
-// }
-// body {
-//   margin: 0;
-//   font-family: Roboto, "Helvetica Neue", sans-serif;
-// }
+@use "../abstracts/mixins" as mixins;
+@use "../abstracts/variables" as variables;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html {
+  font-size: 62.5%; // 1rem = 10px
+  @include mixins.sass-to-css(variables.$root-vailables);
+}

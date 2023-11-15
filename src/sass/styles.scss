@@ -16,27 +16,3 @@
 //layout
 //theme
 //vendors
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-html {
-  font-size: 62.5%;
-}
-// .mdc-list-item__primary-text {
-//   display: flex;
-//   align-items: center;
-//   color: var(--color-primary-text-light) !important;
-// }

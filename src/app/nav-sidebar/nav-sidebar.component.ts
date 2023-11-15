@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Menu } from '../core/interfaces/menu.interface';
 import { Observable } from 'rxjs';
 import { HttpclientService } from '../core/services/httpclient.service';
@@ -11,6 +11,8 @@ import { HttpclientService } from '../core/services/httpclient.service';
 })
 export class NavSidebarComponent implements OnInit {
   menuList: Observable<Menu[]>;
+  toggleMiniNav: boolean = false;
+  @Output() showMiniNav: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private _httpClientService: HttpclientService) {}
 
@@ -18,5 +20,10 @@ export class NavSidebarComponent implements OnInit {
     this.menuList = this._httpClientService.getList<Menu>(
       `assets/data/menuList.json`
     );
+  }
+
+  onToggleMiniNav() {
+    this.toggleMiniNav = !this.toggleMiniNav;
+    this.showMiniNav.emit(this.toggleMiniNav);
   }
 }

@@ -31,6 +31,8 @@ export class AppComponent implements OnInit {
   screenWidth: number = 0;
   navigationMode: 'side' | 'over' = 'side';
   showCollapseButton: boolean = true;
+  isOnlyMiniLeftNavVisible: boolean = false;
+  private defaultLeftSidenavWidth: number = 220;
   public resizingState: Resize = {
     isResizing: false,
     startingPoint: 0,
@@ -90,5 +92,14 @@ export class AppComponent implements OnInit {
       startingPoint: event.clientX,
       startingWidth: this.navigationService.leftNavigationWidth,
     };
+  }
+
+  setLeftNavWidthToMiniNav(isMiniNav: boolean): void {
+    this.isOnlyMiniLeftNavVisible = isMiniNav;
+    this.isOnlyMiniLeftNavVisible
+      ? this.navigationService.setLeftNavigationWidth(58)
+      : this.navigationService.setLeftNavigationWidth(
+          this.defaultLeftSidenavWidth
+        );
   }
 }

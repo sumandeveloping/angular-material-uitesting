@@ -20,8 +20,11 @@
     [mode]="navigationMode"
     opened="true"
     class="example-sidenav"
+    [class.toggleMiniNav]="isOnlyMiniLeftNavVisible"
   >
-    <app-nav-sidebar></app-nav-sidebar>
+    <app-nav-sidebar
+      (showMiniNav)="setLeftNavWidthToMiniNav($event)"
+    ></app-nav-sidebar>
     <div id="resize-handler" (mousedown)="startResizing($event)"></div>
     <!-- <div id="toggle-leftNav"></div> -->
   </mat-sidenav>

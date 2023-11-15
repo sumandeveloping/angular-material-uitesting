@@ -34,6 +34,7 @@ $my-dark-palette: (
 
 @use "@angular/material" as mat;
 @use "../abstracts/variables" as variables;
+@use "../abstracts/mixins" as mixins;
 @include mat.core();
 //light mode
 $primary-light-palette: mat.define-palette(mat.$deep-purple-palette);
@@ -66,7 +67,7 @@ $my-light-theme: mat.define-light-theme(
 
 //light mode theme for app
 .light-mode-theme {
-  @include variables.color-grabber($my-light-theme);
+  @include mixins.color-grabber($my-light-theme);
 }
 
 //dark mode theme for app
@@ -81,5 +82,5 @@ $my-light-theme: mat.define-light-theme(
   );
   // @include mat.all-component-themes($my-dark-theme);
   @include mat.all-component-colors($my-dark-theme);
-  @include variables.color-grabber($my-dark-theme);
+  @include mixins.color-grabber($my-dark-theme);
 }

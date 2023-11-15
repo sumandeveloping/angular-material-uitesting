@@ -7,7 +7,11 @@
 
 .accentCard {
   background-color: var(--color-accent-200);
-  // background-color: $color;
+  border-radius: var(--border-radius-1);
+  -webkit-border-radius: var(--border-radius-1);
+  -moz-border-radius: var(--border-radius-1);
+  -ms-border-radius: var(--border-radius-1);
+  -o-border-radius: var(--border-radius-1);
 }
 
 /* shimmer-loader.component.css and shimmer-card.component.css */
@@ -50,4 +54,10 @@
   100% {
     background-position: 100% 0;
   }
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }

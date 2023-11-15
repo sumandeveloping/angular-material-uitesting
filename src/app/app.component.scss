@@ -21,17 +21,18 @@ mat-sidenav-container {
   mat-sidenav {
     // width: 15rem;
     // max-width: 20rem;
-    // width: 20rem;
-
-    // width: $leftNavigation-width;
     width: var(--leftNavigation-width);
     position: fixed;
-    // height: calc(100vh - var(--topMenu-height));
-    height: calc(100vh - 6rem);
+    height: calc(100vh - var(--topMenu-height));
     z-index: 999;
     display: flex;
     top: var(--topMenu-height);
     left: 0;
+    // transition: width 0.2s ease-in-out;
+    // -webkit-transition: width 0.2s ease-in-out;
+    // -moz-transition: width 0.2s ease-in-out;
+    // -ms-transition: width 0.2s ease-in-out;
+    // -o-transition: width 0.2s ease-in-out;
 
     #resize-handler {
       position: absolute;
@@ -64,6 +65,10 @@ mat-sidenav-container {
     //   background-color: red;
     //   z-index: 999;
     // }
+  }
+
+  mat-sideNav.toggleMiniNav {
+    // width: 58px;
   }
 
   mat-sidenav-content {
