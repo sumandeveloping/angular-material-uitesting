@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRippleModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatExpansionModule,
     MatRippleModule,
     MatToolbarModule,
+    MatRadioModule,
   ],
   exports: [
     MatSidenavModule,
@@ -28,6 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatExpansionModule,
     MatRippleModule,
     MatToolbarModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {}

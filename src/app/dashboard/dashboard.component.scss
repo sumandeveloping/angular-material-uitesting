@@ -1,12 +1,19 @@
 @import "abstracts/variables";
+@import "abstracts/mixins";
 
 .myCard {
   // background-color: $primary-500;
-  background-color: var(--color-primary-200);
+  background-color: var(--clr-primary-200);
+  @include respond-to("tablet-lds") {
+    background-color: orange;
+  }
+  @include respond-to("desktop-lg") {
+    background-color: limegreen;
+  }
 }
 
 .accentCard {
-  background-color: var(--color-accent-200);
+  background-color: var(--clr-accent-200);
   border-radius: var(--border-radius-1);
   -webkit-border-radius: var(--border-radius-1);
   -moz-border-radius: var(--border-radius-1);

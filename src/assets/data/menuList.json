@@ -1,17 +1,43 @@
 [
   {
+    "text": "Sales",
+    "icon": "file_upload",
+    "type": "header"
+  },
+  {
     "text": "Dashboard",
     "icon": "dashboard",
     "routerLink": "/"
   },
   {
-    "text": "Customer",
-    "icon": "people",
+    "text": "Lead",
+    "icon": "send",
     "routerLink": "/reports"
   },
   {
-    "text": "Suit",
-    "icon": "inventory_2",
+    "text": "Contact",
+    "icon": "contacts",
+    "routerLink": "/reports"
+  },
+  {
+    "text": "Account",
+    "icon": "account_box",
+    "routerLink": "/reports"
+  },
+  {
+    "text": "Opportunity",
+    "icon": "monetization_on",
+    "routerLink": "/reports"
+  },
+  {
+    "text": "Upload List",
+    "icon": "file_upload",
+    "type": "button",
+    "routerLink": "/reports"
+  },
+  {
+    "text": "Category",
+    "icon": "category",
     "children": [
       {
         "text": "Category",

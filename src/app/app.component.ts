@@ -1,7 +1,13 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NavigationService } from './core/services/navigation.service';
 import { DOCUMENT } from '@angular/common';
+import { MatSidenav } from '@angular/material/sidenav';
 
 type Resize = {
   isResizing: boolean;
@@ -26,12 +32,13 @@ type Resize = {
   ],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidenav') sideNav: MatSidenav;
   title = 'ui-testing';
   isLeftNavExpanded: boolean = true;
   screenWidth: number = 0;
   navigationMode: 'side' | 'over' = 'side';
   showCollapseButton: boolean = true;
-  isOnlyMiniLeftNavVisible: boolean = false;
+  isLeftNavCollapsed: boolean = false;
   private defaultLeftSidenavWidth: number = 220;
   public resizingState: Resize = {
     isResizing: false,
@@ -44,21 +51,25 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document
   ) {}
 
-  @HostListener('window:mousemove', ['$event']) updateLeftNavWidth(
+  @HostListener('window:resize', ['$event']) evaluateNavModeBasedOnScreenwidth(
     event: MouseEvent
   ) {
     console.log(window.innerWidth);
-    // this.screenWidth = window.innerWidth;
-    // // this.navigationMode = this.screenWidth > 768 ? 'side' : 'over';
-    // if (this.screenWidth > 768) {
-    //   this.navigationMode = 'side';
-    //   this.showCollapseButton = true;
-    // } else {
-    //   this.navigationMode = 'over';
-    //   this.isExpanded = true;
-    //   this.showCollapseButton = false;
-    // }
+    this.screenWidth = window.innerWidth;
+    // this.navigationMode = this.screenWidth > 768 ? 'side' : 'over';
+    if (this.screenWidth > 768) {
+      this.navigationMode = 'side';
+      // this.showCollapseButton = true;
+    } else {
+      this.navigationMode = 'over';
+      // this.isExpanded = true;
+      // this.showCollapseButton = false;
+    }
+  }
 
+  @HostListener('window:mousemove', ['$event']) updateLeftNavWidth(
+    event: MouseEvent
+  ) {
     if (!this.resizingState.isResizing) {
       return;
     }
@@ -81,8 +92,11 @@ export class AppComponent implements OnInit {
     // console.log('init', window.innerWidth, this.navigationMode);
     this.document.body.classList.add('light-mode-theme');
   }
-  toggleNavExpand() {
-    this.isLeftNavExpanded = !this.isLeftNavExpanded;
+  // toggleNavExpand() {
+  //   this.isLeftNavExpanded = !this.isLeftNavExpanded;
+  // }
+  toggleLeftNavBasedOnScreenSize() {
+    this.sideNav.toggle();
   }
 
   startResizing(event: MouseEvent): void {
@@ -95,11 +109,11 @@ export class AppComponent implements OnInit {
   }
 
   setLeftNavWidthToMiniNav(isMiniNav: boolean): void {
-    this.isOnlyMiniLeftNavVisible = isMiniNav;
-    this.isOnlyMiniLeftNavVisible
-      ? this.navigationService.setLeftNavigationWidth(58)
-      : this.navigationService.setLeftNavigationWidth(
-          this.defaultLeftSidenavWidth
-        );
+    this.isLeftNavCollapsed = isMiniNav;
+    // this.isLeftNavCollapsed
+    //   ? this.navigationService.setLeftNavigationWidth(65)
+    //   : this.navigationService.setLeftNavigationWidth(
+    //       this.defaultLeftSidenavWidth
+    //     );
   }
 }

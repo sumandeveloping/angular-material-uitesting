@@ -1,11 +1,94 @@
 .leftNavigation {
   //li items in left menu
-  &__list {
+  &__item {
     span {
-      .mdc-list-item__primary-text {
+      span.mat-mdc-list-item-unscoped-content {
         display: flex;
         align-items: center;
-        color: var(--color-primary-text-default) !important;
+      }
+    }
+
+    &--icon {
+      min-width: 2.5rem;
+      width: 2.5rem;
+      margin: 0 1.5rem;
+    }
+
+    &--text {
+      --clr-leftNavigation-text: #697a8d;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--clr-leftNavigation-text);
+      transition: color 0.2s ease-in;
+      -webkit-transition: color 0.2s ease-in;
+      -moz-transition: color 0.2s ease-in;
+      -ms-transition: color 0.2s ease-in;
+      -o-transition: color 0.2s ease-in;
+    }
+    //li on hover
+    &:hover,
+    &:focus,
+    &.active-link {
+      &::before {
+        background-color: var(--clr-primary-500) !important;
+        opacity: 0 !important;
+      }
+      .leftNavigation__item--text {
+        color: var(--clr-accent-500);
+      }
+    }
+  }
+  &__item.leftNavigation--subitem {
+    span {
+      span.mdc-list-item__primary-text {
+        & > span {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  //nav list
+  &__list {
+    .mat-expansion-panel {
+      .mat-expansion-panel-header {
+        &.mat-expanded {
+          span.mat-content {
+            span.leftNavigation__item--text {
+              color: var(--clr-accent-500);
+            }
+          }
+          span.mat-expansion-indicator {
+            &::after {
+              color: var(--clr-accent-500);
+            }
+          }
+        }
+        span.mat-content {
+          font-size: 1.4rem;
+          align-items: center;
+          // color: var(--clr-primary-text-dark) !important;
+        }
+        span.mat-expansion-indicator {
+          margin-right: 1rem;
+          &::after {
+            color: var(--clr-primary-text-default);
+          }
+        }
+      }
+      //hover effect on panel header
+      &:not(.mat-expanded)
+        .mat-expansion-panel-header:not([aria-disabled="true"]):hover {
+        background: var(--clr-primary-500);
+        & span.leftNavigation__item--text,
+        & span.mat-expansion-indicator::after {
+          color: var(--clr-accent-500);
+        }
+      }
+      .mat-expansion-panel-content {
+        .mat-expansion-panel-body {
+          padding: 0;
+        }
       }
     }
   }

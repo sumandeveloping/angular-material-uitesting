@@ -10,30 +10,36 @@
   // Get the primary color palette from the color-config.
   $primary-palette: map.get($color-config, "primary");
   $accent-palette: map.get($color-config, "accent");
-
-  @debug "this is primary palette ==  `$primary-palette` map";
   @debug $primary-palette;
-  // Read the 500 hue from the primary color palette.
-  // color: mat.get-color-from-palette($primary-palette, 500);
-  // @warn "Unfortunately, no value could be retrieved from `#{mat.get-color-from-palette($primary-palette, 500)}`. ";
   @warn mat.get-color-from-palette($primary-palette, A700);
-  --color-primary-500: #{mat.get-color-from-palette($primary-palette, 500)};
-  --color-primary-400: #{mat.get-color-from-palette($primary-palette, 400)};
-  --color-primary-300: #{mat.get-color-from-palette($primary-palette, 300)};
-  --color-primary-200: #{mat.get-color-from-palette($primary-palette, 200)};
-  --color-accent-500: #{mat.get-color-from-palette($accent-palette, 500)};
-  --color-accent-200: #{mat.get-color-from-palette($accent-palette, 200)};
-
+  //primary palette color
+  --clr-primary-200: #{mat.get-color-from-palette($primary-palette, 200)};
+  --clr-primary-300: #{mat.get-color-from-palette($primary-palette, 300)};
+  --clr-primary-400: #{mat.get-color-from-palette($primary-palette, 400)};
+  --clr-primary-500: #{mat.get-color-from-palette($primary-palette, 500)};
+  --clr-primary-600: #{mat.get-color-from-palette($primary-palette, 600)};
+  --clr-primary-700: #{mat.get-color-from-palette($primary-palette, 700)};
+  --clr-primary-800: #{mat.get-color-from-palette($primary-palette, 800)};
+  --clr-primary-900: #{mat.get-color-from-palette($primary-palette, 900)};
+  //accent palette color
+  --clr-accent-200: #{mat.get-color-from-palette($accent-palette, 200)};
+  --clr-accent-300: #{mat.get-color-from-palette($accent-palette, 300)};
+  --clr-accent-400: #{mat.get-color-from-palette($accent-palette, 400)};
+  --clr-accent-500: #{mat.get-color-from-palette($accent-palette, 500)};
+  --clr-accent-600: #{mat.get-color-from-palette($accent-palette, 600)};
+  --clr-accent-700: #{mat.get-color-from-palette($accent-palette, 700)};
+  --clr-accent-800: #{mat.get-color-from-palette($accent-palette, 800)};
+  --clr-accent-900: #{mat.get-color-from-palette($accent-palette, 900)};
   // text
-  --color-primary-text-default: #{mat.get-color-from-palette(
+  --clr-primary-text-default: #{mat.get-color-from-palette(
       $primary-palette,
       default-contrast
     )};
-  --color-primary-text-dark: #{mat.get-color-from-palette(
+  --clr-primary-text-dark: #{mat.get-color-from-palette(
       $primary-palette,
       lighter-contrast
     )};
-  --color-primary-text-3: #{mat.get-color-from-palette(
+  --clr-primary-text-3: #{mat.get-color-from-palette(
       $primary-palette,
       darker-contrast
     )};
@@ -64,24 +70,33 @@
     clear: both;
   }
 }
+
+//max widdth: 400px;  ==> mobile-ptr
+// min width: 401px & max width: 600px => mobile-lds
+// min width: 601px & max width: 768px => tablet-ptr
+// min width: 769px & max width: 992px => tablet-lds
+// min width: 993px & max width: 1200px => laptop
+// min width: 1201px & max width: 1400px => desktop
+// min-width: 1401px => desktop-lg
 $breakpoints: (
-  "small": (
-    min-width: 767px,
-  ),
-  "medium": (
-    min-width: 992px,
-  ),
-  "large": (
-    min-width: 1200px,
-  ),
+  "mobile-ptr": "(max-width: 400px)",
+  "mobile-lds": "(min-width: 401px) and (max-width: 600px)",
+  "tablet-ptr": "(min-width: 601px) and (max-width: 768px)",
+  "tablet-lds": "(min-width: 769px) and (max-width: 992px)",
+  "laptop": "(min-width: 993px) and (max-width: 1200px)",
+  "desktop": "(min-width: 1201px) and (max-width: 1400px)",
+  "desktop-lg": "(min-width: 1401px)",
 );
+
+@debug inspect("(min-width: 767px) and (max-width: 991px)");
+@debug map.get($breakpoints, "small");
 
 //for Responsiveness
 @mixin respond-to($name) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $name) {
     // Prints a media query based on the value
-    @media #{inspect(map-get($breakpoints, $name))} {
+    @media only screen and #{map-get($breakpoints, $name)} {
       @content;
     }
   }

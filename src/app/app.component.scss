@@ -7,7 +7,7 @@
 //   height: var(--topMenu-height);
 //   display: flex;
 //   align-items: center;
-//   background-color: var(--color-primary-500);
+//   background-color: var(--clr-primary-500);
 // }
 mat-sidenav-container {
   position: relative;
@@ -16,23 +16,24 @@ mat-sidenav-container {
   height: 100%;
   z-index: 1;
   // height: calc(100% - 5rem);
-  background-color: #fdfdfd;
+  background-color: var(--clr-primary-600);
 
   mat-sidenav {
-    // width: 15rem;
-    // max-width: 20rem;
-    width: var(--leftNavigation-width);
+    background-color: var(--clr-primary-500);
+    box-shadow: var(--leftNavigation-box-shadow);
     position: fixed;
+    width: var(--leftNavigation-width);
     height: calc(100vh - var(--topMenu-height));
     z-index: 999;
     display: flex;
     top: var(--topMenu-height);
     left: 0;
-    // transition: width 0.2s ease-in-out;
-    // -webkit-transition: width 0.2s ease-in-out;
-    // -moz-transition: width 0.2s ease-in-out;
-    // -ms-transition: width 0.2s ease-in-out;
-    // -o-transition: width 0.2s ease-in-out;
+    overflow: hidden;
+    transition: width 0.2s ease-in-out;
+    -webkit-transition: width 0.2s ease-in-out;
+    -moz-transition: width 0.2s ease-in-out;
+    -ms-transition: width 0.2s ease-in-out;
+    -o-transition: width 0.2s ease-in-out;
 
     #resize-handler {
       position: absolute;
@@ -41,7 +42,7 @@ mat-sidenav-container {
       width: 3px;
       height: 100%;
       cursor: ew-resize;
-      background-color: var(--color-primary-200);
+      background-color: var(--clr-primary-200);
       z-index: 999;
       transition: background-color 0.3s ease, width 0.2s ease-in-out;
       -webkit-transition: background-color 0.3s ease, width 0.2s ease-in-out;
@@ -51,24 +52,13 @@ mat-sidenav-container {
 
       &:hover {
         width: 5px;
-        background-color: var(--color-primary-300);
+        background-color: var(--clr-primary-300);
       }
     }
-
-    // #toggle-leftNav {
-    //   position: absolute;
-    //   top: 210px;
-    //   right: 0;
-    //   width: 20px;
-    //   height: 20px;
-    //   cursor: pointer;
-    //   background-color: red;
-    //   z-index: 999;
-    // }
   }
 
-  mat-sideNav.toggleMiniNav {
-    // width: 58px;
+  mat-sideNav.collapsed {
+    width: 9.5rem;
   }
 
   mat-sidenav-content {

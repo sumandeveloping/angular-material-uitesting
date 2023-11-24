@@ -4,18 +4,15 @@
 
 //** root css variables irrespective of theme color will be added here
 $root-vailables: (
-  "leftNavigation-width": 220px,
+  "leftNavigation-width": 28rem,
   "topMenu-height": 60px,
   "border-radius-1": 20px,
   "g-border-radius-1": 5px,
   "g-border-radius-2": 3px,
   "g-border-radius-3": 2px,
   "g-border-radius-50p": 50%,
+  "header-box-shadow": 0px 3px 18px rgba(0, 0, 0, 0.09),
+  "leftNavigation-box-shadow": 0px 3px 18px rgba(0, 0, 0, 0.09),
 );
 
 @debug $root-vailables;
-
-// :root {
-//   --leftNavigation-width: 220px;
-//   --topMenu-height: 6rem;
-// }

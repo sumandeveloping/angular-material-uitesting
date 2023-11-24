@@ -5,7 +5,7 @@ import { Inject, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class NavigationService {
-  sidenavMinWidth: number = 58;
+  sidenavMinWidth: number = 98;
   sidenavMaxWidth: number = window.innerWidth / 2;
 
   constructor(@Inject(DOCUMENT) private document: Document) {}

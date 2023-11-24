@@ -1,18 +1,10 @@
-<!-- <main class="app-wrapper">hi</main> -->
-<!-- header -->
-<!-- <header>
-  <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-  <button mat-raised-button>Basic</button>
-  <button mat-raised-button color="primary">Primary</button>
-  <button mat-raised-button color="accent">Accent</button>
-  <div class="logo-container"><a role="button">LOGO</a></div>
-</header> -->
 <app-header />
 
 <!-- sidenav container with main content -->
 <mat-sidenav-container
-  hasBackdrop="false"
+  [hasBackdrop]="navigationMode == 'over'"
   autosize="true"
+  (backdropClick)="sidenav.toggle()"
   class="mat-drawer-transition"
 >
   <mat-sidenav
@@ -20,13 +12,14 @@
     [mode]="navigationMode"
     opened="true"
     class="example-sidenav"
-    [class.toggleMiniNav]="isOnlyMiniLeftNavVisible"
+    [class.collapsed]="isLeftNavCollapsed"
   >
     <app-nav-sidebar
       (showMiniNav)="setLeftNavWidthToMiniNav($event)"
+      (toggleLeftSideNav)="toggleLeftNavBasedOnScreenSize()"
+      [mode]="navigationMode"
     ></app-nav-sidebar>
-    <div id="resize-handler" (mousedown)="startResizing($event)"></div>
-    <!-- <div id="toggle-leftNav"></div> -->
+    <!-- <div id="resize-handler" (mousedown)="startResizing($event)"></div> -->
   </mat-sidenav>
 
   <mat-sidenav-content>

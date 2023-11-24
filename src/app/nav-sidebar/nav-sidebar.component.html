@@ -1,58 +1,315 @@
-<nav class="leftNavigation">
+<aside class="leftNavigation">
   <div class="leftNavigation__logo">
-    <a role="button" routerLink="/" (click)="onToggleMiniNav()"
+    <a role="button" (click)="onToggleMiniNav()"
       ><mat-icon color="primary" class="leftNavigation__logo--icon"
         >manage_accounts</mat-icon
       >
       <mat-divider></mat-divider
     ></a>
   </div>
-  <mat-nav-list class="leftNavigation__container">
-    <mat-list-item class="leftNavigation__list" routerLink="/reports">
-      <mat-icon>feedback</mat-icon>
-      <span>Service</span>
-    </mat-list-item>
-    <ng-container
-      *ngFor="let menuItem of menuList | async as menuList; index as i"
-    >
-      <ng-container
-        [ngTemplateOutlet]="menuItem?.children ? childItems : parentItems"
-        [ngTemplateOutletContext]="{ menuItem: menuItem }"
-      ></ng-container>
+  <!-- whole nav bar -->
+  <nav class="leftNavigation__panel invisible-scrollbar">
+    <!-- NAV LIST -->
+    <!-- **Dashboard -->
+    <mat-nav-list class="leftNavigation__list">
+      <div
+        class="leftNavigation__list--header"
+        mat-subheader
+        *ngIf="dashboardMenuList?.hasHeader"
+        [class.headerCollpased]="toggleMiniNav"
+      >
+        <mat-divider></mat-divider>
+        <p>{{ dashboardMenuList.header }}</p>
+      </div>
+      <mat-list-item
+        class="leftNavigation__item mat-mdc-list-item-interactive"
+        matRipple
+        *ngFor="let item of dashboardMenuList.items"
+        [routerLink]="item.routerLink"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          class="leftNavigation__item--icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24.5"
+          height="21.438"
+          viewBox="0 0 24.5 21.438"
+        >
+          <g id="_icons" transform="translate(-4 -5)">
+            <path
+              id="Path_4412"
+              data-name="Path 4412"
+              d="M5.531,8.063H26.969A1.447,1.447,0,0,0,28.5,6.531,1.447,1.447,0,0,0,26.969,5H5.531A1.447,1.447,0,0,0,4,6.531,1.447,1.447,0,0,0,5.531,8.063Z"
+              transform="translate(0 0)"
+              fill="#697a8d"
+            />
+            <path
+              id="Path_4413"
+              data-name="Path 4413"
+              d="M5.531,14.063H26.969A1.447,1.447,0,0,0,28.5,12.531,1.447,1.447,0,0,0,26.969,11H5.531A1.447,1.447,0,0,0,4,12.531,1.447,1.447,0,0,0,5.531,14.063Z"
+              transform="translate(0 3.188)"
+              fill="#697a8d"
+            />
+            <path
+              id="Path_4414"
+              data-name="Path 4414"
+              d="M5.531,20.062H26.969a1.531,1.531,0,0,0,0-3.062H5.531a1.531,1.531,0,1,0,0,3.063Z"
+              transform="translate(0 6.375)"
+              fill="#697a8d"
+            />
+          </g>
+        </svg>
+        <span class="leftNavigation__item--text">{{ item.text }}</span>
+      </mat-list-item>
+    </mat-nav-list>
+    <!--** 1.sales -->
+    <ng-container *ngIf="salesMenuList.items.length">
+      <mat-nav-list class="leftNavigation__list">
+        <div
+          class="leftNavigation__list--header"
+          mat-subheader
+          *ngIf="salesMenuList?.hasHeader"
+          [class.headerCollpased]="toggleMiniNav"
+        >
+          <mat-divider></mat-divider>
+          <p>{{ salesMenuList.header }}</p>
+        </div>
+        <mat-list-item
+          class="leftNavigation__item mat-mdc-list-item-interactive"
+          matRipple
+          *ngFor="let item of salesMenuList.items"
+          [routerLink]="item.routerLink"
+          routerLinkActive="active-link"
+        >
+          <svg
+            class="leftNavigation__item--icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24.5"
+            height="21.438"
+            viewBox="0 0 24.5 21.438"
+          >
+            <g id="_icons" transform="translate(-4 -5)">
+              <path
+                id="Path_4412"
+                data-name="Path 4412"
+                d="M5.531,8.063H26.969A1.447,1.447,0,0,0,28.5,6.531,1.447,1.447,0,0,0,26.969,5H5.531A1.447,1.447,0,0,0,4,6.531,1.447,1.447,0,0,0,5.531,8.063Z"
+                transform="translate(0 0)"
+                fill="#697a8d"
+              />
+              <path
+                id="Path_4413"
+                data-name="Path 4413"
+                d="M5.531,14.063H26.969A1.447,1.447,0,0,0,28.5,12.531,1.447,1.447,0,0,0,26.969,11H5.531A1.447,1.447,0,0,0,4,12.531,1.447,1.447,0,0,0,5.531,14.063Z"
+                transform="translate(0 3.188)"
+                fill="#697a8d"
+              />
+              <path
+                id="Path_4414"
+                data-name="Path 4414"
+                d="M5.531,20.062H26.969a1.531,1.531,0,0,0,0-3.062H5.531a1.531,1.531,0,1,0,0,3.063Z"
+                transform="translate(0 6.375)"
+                fill="#697a8d"
+              />
+            </g>
+          </svg>
+          <span class="leftNavigation__item--text">{{ item.text }}</span>
+        </mat-list-item>
+      </mat-nav-list>
     </ng-container>
-  </mat-nav-list>
-</nav>
+    <!--** 2. co-marketing -->
+    <ng-container *ngIf="coMarketingMenuList.items.length">
+      <mat-nav-list class="leftNavigation__list">
+        <div
+          class="leftNavigation__list--header"
+          mat-subheader
+          *ngIf="coMarketingMenuList?.hasHeader"
+          [class.headerCollpased]="toggleMiniNav"
+        >
+          <mat-divider></mat-divider>
+          <p>{{ coMarketingMenuList.header }}</p>
+        </div>
+        <ng-container
+          *ngFor="let item of coMarketingMenuList.items; index as i"
+        >
+          <ng-container
+            [ngTemplateOutlet]="
+              item?.items ? expansionPanelTmp : genericMatLisTmp
+            "
+            [ngTemplateOutletContext]="{ menuItem: item }"
+          ></ng-container>
+        </ng-container>
+      </mat-nav-list>
+    </ng-container>
+    <!--** 3. Reports -->
+    <ng-container *ngIf="reportsMenuList.items.length">
+      <mat-nav-list class="leftNavigation__list">
+        <div
+          class="leftNavigation__list--header"
+          mat-subheader
+          *ngIf="reportsMenuList?.hasHeader"
+          [class.headerCollpased]="toggleMiniNav"
+        >
+          <mat-divider></mat-divider>
+          <p>{{ reportsMenuList.header }}</p>
+        </div>
+        <ng-container *ngFor="let item of reportsMenuList.items; index as i">
+          <ng-container
+            [ngTemplateOutlet]="
+              item?.items ? expansionPanelTmp : genericMatLisTmp
+            "
+            [ngTemplateOutletContext]="{ menuItem: item }"
+          ></ng-container>
+        </ng-container>
+      </mat-nav-list>
+    </ng-container>
+  </nav>
 
+  <!-- left nav footer -->
+  <!-- <div class="leftNavigation__footer">footer</div> -->
+</aside>
+
+<!-- === TEMPLATE FOR MENU === -->
 <!-- main menu template -->
-<ng-template #parentItems let-menuItem="menuItem">
+<ng-template #genericMatLisTmp let-menuItem="menuItem">
   <mat-list-item
-    class="leftNavigation__list mat-mdc-list-item-interactive"
+    class="leftNavigation__item mat-mdc-list-item-interactive"
     matRipple
     [routerLink]="menuItem.routerLink"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
   >
-    <mat-icon>{{ menuItem.icon }}</mat-icon>
-    <span>{{ menuItem.text }}</span>
+    <!-- <img
+      class="leftNavigation__item--icon"
+      src="assets/icons/test.svg"
+      alt="menu icon svg"
+    /> -->
+    <svg
+      class="leftNavigation__item--icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24.5"
+      height="21.438"
+      viewBox="0 0 24.5 21.438"
+    >
+      <g id="_icons" transform="translate(-4 -5)">
+        <path
+          id="Path_4412"
+          data-name="Path 4412"
+          d="M5.531,8.063H26.969A1.447,1.447,0,0,0,28.5,6.531,1.447,1.447,0,0,0,26.969,5H5.531A1.447,1.447,0,0,0,4,6.531,1.447,1.447,0,0,0,5.531,8.063Z"
+          transform="translate(0 0)"
+          fill="#697a8d"
+        />
+        <path
+          id="Path_4413"
+          data-name="Path 4413"
+          d="M5.531,14.063H26.969A1.447,1.447,0,0,0,28.5,12.531,1.447,1.447,0,0,0,26.969,11H5.531A1.447,1.447,0,0,0,4,12.531,1.447,1.447,0,0,0,5.531,14.063Z"
+          transform="translate(0 3.188)"
+          fill="#697a8d"
+        />
+        <path
+          id="Path_4414"
+          data-name="Path 4414"
+          d="M5.531,20.062H26.969a1.531,1.531,0,0,0,0-3.062H5.531a1.531,1.531,0,1,0,0,3.063Z"
+          transform="translate(0 6.375)"
+          fill="#697a8d"
+        />
+      </g>
+    </svg>
+    <span class="leftNavigation__item--text">{{ menuItem.text }}</span>
   </mat-list-item>
 </ng-template>
-<!-- child menu template => material expansion panel -->
-<ng-template #childItems let-menuItem="menuItem">
+<!-- main menu template if nested => material expansion panel -->
+<ng-template #expansionPanelTmp let-menuItem="menuItem">
   <mat-expansion-panel
     [class.mat-elevation-z0]="true"
     hideToggle="false"
     togglePosition="after"
   >
-    <mat-expansion-panel-header
-      ><mat-icon>{{ menuItem.icon }}</mat-icon
-      >{{ menuItem.text }}</mat-expansion-panel-header
-    >
+    <mat-expansion-panel-header>
+      <!-- <img
+        class="leftNavigation__item--icon"
+        src="assets/icons/test.svg"
+        alt="menu icon svg"
+      /> -->
+      <svg
+        class="leftNavigation__item--icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24.5"
+        height="21.438"
+        viewBox="0 0 24.5 21.438"
+      >
+        <g id="_icons" transform="translate(-4 -5)">
+          <path
+            id="Path_4412"
+            data-name="Path 4412"
+            d="M5.531,8.063H26.969A1.447,1.447,0,0,0,28.5,6.531,1.447,1.447,0,0,0,26.969,5H5.531A1.447,1.447,0,0,0,4,6.531,1.447,1.447,0,0,0,5.531,8.063Z"
+            transform="translate(0 0)"
+            fill="#697a8d"
+          />
+          <path
+            id="Path_4413"
+            data-name="Path 4413"
+            d="M5.531,14.063H26.969A1.447,1.447,0,0,0,28.5,12.531,1.447,1.447,0,0,0,26.969,11H5.531A1.447,1.447,0,0,0,4,12.531,1.447,1.447,0,0,0,5.531,14.063Z"
+            transform="translate(0 3.188)"
+            fill="#697a8d"
+          />
+          <path
+            id="Path_4414"
+            data-name="Path 4414"
+            d="M5.531,20.062H26.969a1.531,1.531,0,0,0,0-3.062H5.531a1.531,1.531,0,1,0,0,3.063Z"
+            transform="translate(0 6.375)"
+            fill="#697a8d"
+          />
+        </g>
+      </svg>
+      <span class="leftNavigation__item--text">{{ menuItem.text }}</span>
+      <!-- {{ menuItem.text }} -->
+    </mat-expansion-panel-header>
     <mat-nav-list class="leftNavigation__container--submenu">
       <mat-list-item
-        class="leftNavigation__list"
+        class="leftNavigation__item leftNavigation--subitem"
+        *ngFor="let submenu of menuItem.items; index as submenuIndex"
         [routerLink]="submenu.routerLink"
-        *ngFor="let submenu of menuItem.children; index as submenuIndex"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
-        <!-- <mat-icon>{{ submenu.icon }}</mat-icon> -->
-        <span>{{ submenu.text }}</span>
+        <!-- <img
+          class="leftNavigation__item--icon"
+          src="assets/icons/test.svg"
+          alt="menu icon svg"
+        /> -->
+        <svg
+          class="leftNavigation__item--icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24.5"
+          height="21.438"
+          viewBox="0 0 24.5 21.438"
+        >
+          <g id="_icons" transform="translate(-4 -5)">
+            <path
+              id="Path_4412"
+              data-name="Path 4412"
+              d="M5.531,8.063H26.969A1.447,1.447,0,0,0,28.5,6.531,1.447,1.447,0,0,0,26.969,5H5.531A1.447,1.447,0,0,0,4,6.531,1.447,1.447,0,0,0,5.531,8.063Z"
+              transform="translate(0 0)"
+              fill="#697a8d"
+            />
+            <path
+              id="Path_4413"
+              data-name="Path 4413"
+              d="M5.531,14.063H26.969A1.447,1.447,0,0,0,28.5,12.531,1.447,1.447,0,0,0,26.969,11H5.531A1.447,1.447,0,0,0,4,12.531,1.447,1.447,0,0,0,5.531,14.063Z"
+              transform="translate(0 3.188)"
+              fill="#697a8d"
+            />
+            <path
+              id="Path_4414"
+              data-name="Path 4414"
+              d="M5.531,20.062H26.969a1.531,1.531,0,0,0,0-3.062H5.531a1.531,1.531,0,1,0,0,3.063Z"
+              transform="translate(0 6.375)"
+              fill="#697a8d"
+            />
+          </g>
+        </svg>
+        <span class="leftNavigation__item--text">{{ submenu.text }}</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-expansion-panel>
